@@ -47,7 +47,11 @@ class AggregateResolverTest extends PHPUnit_Framework_TestCase
     public function testCollectWithCollectMethod()
     {
         $resolver    = new AggregateResolver();
-        $lowPriority = $this->createMock('AssetManager\Resolver\ResolverInterface', array('resolve', 'collect'));
+
+        $lowPriority = $this->getMockBuilder('AssetManager\Resolver\ResolverInterface')
+            ->setMethods(array('resolve', 'collect'))
+            ->getMock();
+
         $lowPriority
             ->expects($this->exactly(2))
             ->method('collect')
@@ -56,7 +60,10 @@ class AggregateResolverTest extends PHPUnit_Framework_TestCase
 
         $this->assertContains('one', $resolver->collect());
 
-        $highPriority = $this->createMock('AssetManager\Resolver\ResolverInterface', array('resolve', 'collect'));
+        $highPriority = $this->getMockBuilder('AssetManager\Resolver\ResolverInterface')
+            ->setMethods(array('resolve', 'collect'))
+            ->getMock();
+
         $highPriority
             ->expects($this->once())
             ->method('collect')
