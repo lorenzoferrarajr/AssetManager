@@ -15,7 +15,7 @@ class CollectionResolverServiceFactory implements FactoryInterface
      */
     public function __invoke(ContainerInterface $serviceLocator, $requestedName, array $options = null)
     {
-        $config      = $serviceLocator->get('Config');
+        $config      = $serviceLocator->get('config');
         $collections = array();
 
         if (isset($config['asset_manager']['resolver_configs']['collections'])) {

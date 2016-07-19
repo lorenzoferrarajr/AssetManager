@@ -15,7 +15,7 @@ class ConcatResolverServiceFactory implements FactoryInterface
      */
     public function __invoke(ContainerInterface $serviceLocator, $requestedName, array $options = null)
     {
-        $config      = $serviceLocator->get('Config');
+        $config      = $serviceLocator->get('config');
         $files = array();
 
         if (isset($config['asset_manager']['resolver_configs']['concat'])) {
