@@ -14,7 +14,7 @@ class AggregateResolverTest extends PHPUnit_Framework_TestCase
 
         $this->assertTrue($resolver instanceof ResolverInterface);
 
-        $lowPriority = $this->getMock('AssetManager\Resolver\ResolverInterface');
+        $lowPriority = $this->createMock('AssetManager\Resolver\ResolverInterface');
         $lowPriority
             ->expects($this->once())
             ->method('resolve')
@@ -24,7 +24,7 @@ class AggregateResolverTest extends PHPUnit_Framework_TestCase
 
         $this->assertSame('first', $resolver->resolve('to-be-resolved'));
 
-        $highPriority = $this->getMock('AssetManager\Resolver\ResolverInterface');
+        $highPriority = $this->createMock('AssetManager\Resolver\ResolverInterface');
         $highPriority
             ->expects($this->exactly(2))
             ->method('resolve')
@@ -34,7 +34,7 @@ class AggregateResolverTest extends PHPUnit_Framework_TestCase
 
         $this->assertSame('second', $resolver->resolve('to-be-resolved'));
 
-        $averagePriority = $this->getMock('AssetManager\Resolver\ResolverInterface');
+        $averagePriority = $this->createMock('AssetManager\Resolver\ResolverInterface');
         $averagePriority
             ->expects($this->never())
             ->method('resolve')
@@ -47,7 +47,7 @@ class AggregateResolverTest extends PHPUnit_Framework_TestCase
     public function testCollectWithCollectMethod()
     {
         $resolver    = new AggregateResolver();
-        $lowPriority = $this->getMock('AssetManager\Resolver\ResolverInterface', array('resolve', 'collect'));
+        $lowPriority = $this->createMock('AssetManager\Resolver\ResolverInterface', array('resolve', 'collect'));
         $lowPriority
             ->expects($this->exactly(2))
             ->method('collect')
@@ -56,7 +56,7 @@ class AggregateResolverTest extends PHPUnit_Framework_TestCase
 
         $this->assertContains('one', $resolver->collect());
 
-        $highPriority = $this->getMock('AssetManager\Resolver\ResolverInterface', array('resolve', 'collect'));
+        $highPriority = $this->createMock('AssetManager\Resolver\ResolverInterface', array('resolve', 'collect'));
         $highPriority
             ->expects($this->once())
             ->method('collect')
@@ -73,13 +73,13 @@ class AggregateResolverTest extends PHPUnit_Framework_TestCase
     public function testCollectWithoutCollectMethod()
     {
         $resolver    = new AggregateResolver();
-        $lowPriority = $this->getMock('AssetManager\Resolver\ResolverInterface');
+        $lowPriority = $this->createMock('AssetManager\Resolver\ResolverInterface');
 
         $resolver->attach($lowPriority);
 
         $this->assertEquals(array(), $resolver->collect());
 
-        $highPriority = $this->getMock('AssetManager\Resolver\ResolverInterface');
+        $highPriority = $this->createMock('AssetManager\Resolver\ResolverInterface');
         $resolver->attach($highPriority, 1000);
 
         $collection = $resolver->collect();

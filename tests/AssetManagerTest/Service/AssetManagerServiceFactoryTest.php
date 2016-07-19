@@ -20,7 +20,7 @@ class AssetManagerServiceFactoryTest extends PHPUnit_Framework_TestCase
         $serviceManager = new ServiceManager();
         $serviceManager->setService(
             'AssetManager\Service\AggregateResolver',
-            $this->getMock('AssetManager\Resolver\ResolverInterface')
+            $this->createMock('AssetManager\Resolver\ResolverInterface')
         );
 
         $serviceManager->setService(

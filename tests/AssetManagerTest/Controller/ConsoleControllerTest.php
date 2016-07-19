@@ -61,7 +61,7 @@ class ConsoleControllerTest extends PHPUnit_Framework_TestCase
         $this->event->setRouteMatch($this->routeMatch);
 
         $this->controller = new ConsoleController(
-            $this->getMock('Zend\Console\Adapter\AdapterInterface'),
+            $this->createMock('Zend\Console\Adapter\AdapterInterface'),
             $assetManager,
             array()
         );
@@ -87,7 +87,7 @@ class ConsoleControllerTest extends PHPUnit_Framework_TestCase
      */
     protected function getAssetCacheManager()
     {
-        $serviceLocator = $this->getMock('Zend\ServiceManager\ServiceLocatorInterface');
+        $serviceLocator = $this->createMock('Zend\ServiceManager\ServiceLocatorInterface');
         $config = array(
             self::$assetName => array(
                 'cache' => 'FilePathCache',
