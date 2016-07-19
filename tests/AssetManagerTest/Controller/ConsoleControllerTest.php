@@ -11,8 +11,8 @@ use AssetManager\Service\MimeResolver;
 use JSMin;
 use PHPUnit_Framework_TestCase;
 use Zend\Console\Request as ConsoleRequest;
+use Zend\Mvc\Console\Router\RouteMatch;
 use Zend\Mvc\MvcEvent;
-use Zend\Mvc\Router\Console\RouteMatch;
 use Zend\View\Resolver\ResolverInterface;
 
 class ConsoleControllerTest extends PHPUnit_Framework_TestCase
