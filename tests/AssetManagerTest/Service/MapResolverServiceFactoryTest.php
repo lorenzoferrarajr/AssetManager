@@ -30,7 +30,7 @@ class MapResolverServiceFactoryTest extends PHPUnit_Framework_TestCase
 
         $factory = new MapResolverServiceFactory();
         /* @var \AssetManager\Resolver\MapResolver */
-        $mapResolver = $factory->createService($serviceManager);
+        $mapResolver = $factory->__invoke($serviceManager, 'dummy');
         $this->assertSame(
             array(
                 'key1' => 'value1',
@@ -50,7 +50,7 @@ class MapResolverServiceFactoryTest extends PHPUnit_Framework_TestCase
 
         $factory = new MapResolverServiceFactory();
         /* @var \AssetManager\Resolver\MapResolver */
-        $mapResolver = $factory->createService($serviceManager);
+        $mapResolver = $factory->__invoke($serviceManager, 'dummy');
         $this->assertEmpty($mapResolver->getMap());
     }
 }

@@ -2,8 +2,8 @@
 
 namespace AssetManager\Service;
 
-use Zend\ServiceManager\FactoryInterface;
-use Zend\ServiceManager\ServiceLocatorInterface;
+use Interop\Container\ContainerInterface;
+use Zend\ServiceManager\Factory\FactoryInterface;
 
 class AssetFilterManagerServiceFactory implements FactoryInterface
 {
@@ -12,7 +12,7 @@ class AssetFilterManagerServiceFactory implements FactoryInterface
      *
      * @return AssetFilterManager
      */
-    public function createService(ServiceLocatorInterface $serviceLocator)
+    public function __invoke(ContainerInterface $serviceLocator, $requestedName, array $options = null)
     {
         $filters = array();
         $config  = $serviceLocator->get('Config');
